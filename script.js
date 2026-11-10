@@ -16,27 +16,77 @@
   function v(i) {
     return document.getElementById(i).value;
   }
-  function mail(s, b) {
-    location.href =
-      "mailto:b190305010@cse.jnu.ac.bd?subject=" +
-      encodeURIComponent(s) +
-      "&body=" +
-      encodeURIComponent(b);
+  var KEY = "cce0da98-715e-4167-91a8-653243d2e683",
+    TO = "b190305010@cse.jnu.ac.bd";
+  function send(form, btn, stat, data, fb) {
+    stat.className = "fstat";
+    stat.textContent = "Sending\u2026";
+    btn.disabled = true;
+    data.access_key = KEY;
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(function (r) {
+        return r.json();
+      })
+      .then(function (j) {
+        if (j && j.success) {
+          stat.className = "fstat ok";
+          stat.textContent =
+            "Thank you! Your message was sent. I\u2019ll reply by email soon.";
+          form.reset();
+        } else {
+          throw new Error("fail");
+        }
+      })
+      .catch(function () {
+        stat.className = "fstat err";
+        stat.innerHTML =
+          'Sorry, it couldn\u2019t be sent. <a href="mailto:' +
+          TO +
+          "?subject=" +
+          encodeURIComponent(fb.s) +
+          "&body=" +
+          encodeURIComponent(fb.b) +
+          '">Open in your email app instead</a>.';
+      })
+      .then(function () {
+        btn.disabled = false;
+      });
   }
   document.getElementById("fmsg").onsubmit = function (e) {
     e.preventDefault();
-    mail(
-      v("ms") || "Message from your portfolio",
-      v("mm") + "\n\n— " + v("mn") + " (" + v("me") + ")"
+    var f = e.target;
+    if (document.getElementById("hp1").checked) return;
+    var s = v("ms") || "Message from your portfolio",
+      m = v("mm");
+    send(
+      f,
+      f.querySelector("button"),
+      document.getElementById("s1"),
+      {
+        name: v("mn"),
+        email: v("me"),
+        subject: s,
+        message: m,
+        from_name: "Portfolio contact form",
+      },
+      { s: s, b: m + "\n\n\u2014 " + v("mn") + " (" + v("me") + ")" }
     );
   };
   document.getElementById("fmeet").onsubmit = function (e) {
     e.preventDefault();
-    mail(
-      "Meeting request: " + v("tn"),
-      "Hello Shehad,\n\nI would like to schedule a " +
+    var f = e.target;
+    if (document.getElementById("hp2").checked) return;
+    var m =
+        "Meeting request\n\nDuration: " +
         v("tl") +
-        " meeting.\n\nPreferred date: " +
+        "\nPreferred date: " +
         v("td") +
         "\nPreferred time: " +
         v("tt") +
@@ -45,16 +95,35 @@
         ")\nPlatform: " +
         v("tp") +
         "\n\nTopic: " +
-        (v("tm") || "-") +
-        "\n\n— " +
-        v("tn") +
-        " (" +
-        v("te") +
-        ")"
+        (v("tm") || "-"),
+      s = "Meeting request: " + v("tn");
+    send(
+      f,
+      f.querySelector("button"),
+      document.getElementById("s2"),
+      {
+        name: v("tn"),
+        email: v("te"),
+        subject: s,
+        message: m,
+        from_name: "Portfolio meeting request",
+      },
+      {
+        s: s,
+        b:
+          "Hello Shehad,\n\n" +
+          m +
+          "\n\n\u2014 " +
+          v("tn") +
+          " (" +
+          v("te") +
+          ")",
+      }
     );
   };
   document.getElementById("td").min = new Date().toISOString().slice(0, 10);
 })();
+
 document.querySelectorAll(".shot img").forEach(function (i) {
   function ok() {
     if (i.naturalWidth) i.parentNode.classList.add("has");
