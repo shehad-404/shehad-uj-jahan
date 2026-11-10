@@ -822,3 +822,36 @@ a.link:hover {
     transform: none;
   }
 }
+
+.hp {
+  position: absolute !important;
+  left: -9999px;
+  width: 1px !important;
+  height: 1px;
+  opacity: 0;
+}
+.fstat {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.fstat.ok {
+  color: #6fd18b;
+}
+.fstat.err {
+  color: #ff9d8a;
+}
+:root[data-theme="light"] .fstat.ok {
+  color: #17713a;
+}
+:root[data-theme="light"] .fstat.err {
+  color: #b3261e;
+}
+.fstat a {
+  color: inherit;
+  text-decoration: underline;
+}
+.forms button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
