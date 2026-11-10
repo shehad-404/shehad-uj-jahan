@@ -656,10 +656,19 @@
                 placeholder="Your message"
                 required
               ></textarea>
-              <button class="btn fill" type="submit">Send by email</button>
+              <button class="btn fill" type="submit">Send message</button>
+              <input
+                type="checkbox"
+                id="hp1"
+                class="hp"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              />
+              <p class="fstat" id="s1" role="status"></p>
               <small
-                >This opens your email app with the message ready to send to
-                me.</small
+                >Your message goes straight to my inbox, and I reply by
+                email.</small
               >
             </form>
             <form id="fmeet">
@@ -701,9 +710,18 @@
                 placeholder="What would you like to discuss?"
               ></textarea>
               <button class="btn fill" type="submit">Request meeting</button>
+              <input
+                type="checkbox"
+                id="hp2"
+                class="hp"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              />
+              <p class="fstat" id="s2" role="status"></p>
               <small
-                >I’m based in Dhaka (GMT+6). This sends me a request by email,
-                and I’ll reply with a confirmed time and the meeting
+                >I’m based in Dhaka (GMT+6). This sends me your request
+                directly, and I’ll reply with a confirmed time and the meeting
                 link.</small
               >
             </form>
