@@ -855,3 +855,20 @@ a.link:hover {
   opacity: 0.6;
   cursor: wait;
 }
+
+.forms input[type="date"],
+.forms input[type="time"] {
+  color-scheme: dark;
+}
+:root[data-theme="light"] .forms input[type="date"],
+:root[data-theme="light"] .forms input[type="time"] {
+  color-scheme: light;
+}
+.forms input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+.forms option,
+.forms optgroup {
+  background: var(--card);
+  color: var(--text);
+}

@@ -91,7 +91,7 @@
         "\nPreferred time: " +
         v("tt") +
         " (" +
-        v("tz") +
+        tzl() +
         ")\nPlatform: " +
         v("tp") +
         "\n\nTopic: " +
@@ -225,4 +225,47 @@ document.querySelectorAll(".shot img").forEach(function (i) {
         io.observe(t);
       });
   }
+})();
+function tzl() {
+  var s = document.getElementById("tz");
+  return s.options[s.selectedIndex].text;
+}
+(function () {
+  var sel = document.getElementById("tz");
+  if (!sel || sel.tagName !== "SELECT") return;
+  var Z =
+    "Asia|Bangladesh (Dhaka)=Asia/Dhaka,India=Asia/Kolkata,Pakistan=Asia/Karachi,Nepal=Asia/Kathmandu,Sri Lanka=Asia/Colombo,China=Asia/Shanghai,Japan=Asia/Tokyo,South Korea=Asia/Seoul,Singapore=Asia/Singapore,Malaysia=Asia/Kuala_Lumpur,Thailand=Asia/Bangkok,Indonesia (Jakarta)=Asia/Jakarta,Philippines=Asia/Manila,Vietnam=Asia/Ho_Chi_Minh~Middle East|Saudi Arabia=Asia/Riyadh,United Arab Emirates=Asia/Dubai,Qatar=Asia/Qatar,Turkey=Europe/Istanbul,Israel=Asia/Jerusalem~Europe|United Kingdom=Europe/London,Ireland=Europe/Dublin,Germany=Europe/Berlin,France=Europe/Paris,Italy=Europe/Rome,Spain=Europe/Madrid,Netherlands=Europe/Amsterdam,Belgium=Europe/Brussels,Switzerland=Europe/Zurich,Austria=Europe/Vienna,Sweden=Europe/Stockholm,Norway=Europe/Oslo,Denmark=Europe/Copenhagen,Finland=Europe/Helsinki,Poland=Europe/Warsaw,Portugal=Europe/Lisbon,Ukraine=Europe/Kyiv,Russia (Moscow)=Europe/Moscow~North America|USA (Eastern)=America/New_York,USA (Central)=America/Chicago,USA (Mountain)=America/Denver,USA (Pacific)=America/Los_Angeles,Canada (Toronto)=America/Toronto,Canada (Vancouver)=America/Vancouver,Mexico=America/Mexico_City~South America|Brazil (S\u00e3o Paulo)=America/Sao_Paulo,Argentina=America/Argentina/Buenos_Aires,Chile=America/Santiago,Colombia=America/Bogota~Africa|Egypt=Africa/Cairo,Nigeria=Africa/Lagos,Ghana=Africa/Accra,Kenya=Africa/Nairobi,Ethiopia=Africa/Addis_Ababa,Morocco=Africa/Casablanca,South Africa=Africa/Johannesburg~Oceania|Australia (Sydney)=Australia/Sydney,Australia (Perth)=Australia/Perth,New Zealand=Pacific/Auckland".split(
+      "~"
+    );
+  function off(id) {
+    try {
+      var p = new Intl.DateTimeFormat("en", {
+        timeZone: id,
+        timeZoneName: "shortOffset",
+      }).formatToParts(new Date());
+      for (var i = 0; i < p.length; i++)
+        if (p[i].type === "timeZoneName") return p[i].value;
+    } catch (e) {}
+    return "";
+  }
+  var guess = "";
+  try {
+    guess = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch (e) {}
+  sel.innerHTML = '<option value="">Select your country / time zone</option>';
+  Z.forEach(function (row) {
+    var a = row.split("|"),
+      og = document.createElement("optgroup");
+    og.label = a[0];
+    a[1].split(",").forEach(function (x) {
+      var c = x.split("="),
+        o = document.createElement("option"),
+        f = off(c[1]);
+      o.value = c[1];
+      o.textContent = c[0] + (f ? " \u2014 " + f : "");
+      if (c[1] === guess) o.selected = true;
+      og.appendChild(o);
+    });
+    sel.appendChild(og);
+  });
 })();
