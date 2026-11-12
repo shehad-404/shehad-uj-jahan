@@ -217,7 +217,7 @@ document.querySelectorAll(".shot img").forEach(function (i) {
       { threshold: 0.1 }
     );
     document
-      .querySelectorAll("section h2,.item,.proj,.stat,.forms form")
+      .querySelectorAll("section h2,.item,.proj,.stat,.forms form,.chips li")
       .forEach(function (t) {
         var k = Array.prototype.indexOf.call(t.parentNode.children, t);
         t.style.transitionDelay = Math.min(k, 5) * 70 + "ms";
@@ -267,5 +267,70 @@ function tzl() {
       og.appendChild(o);
     });
     sel.appendChild(og);
+  });
+})();
+
+(function () {
+  var rm =
+    window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var links = {};
+  document.querySelectorAll("header nav a").forEach(function (a) {
+    links[a.getAttribute("href")] = a;
+  });
+  function act(id) {
+    for (var k in links) links[k].classList.toggle("active", k === "#" + id);
+  }
+  if (!("IntersectionObserver" in window)) return;
+  var so = new IntersectionObserver(
+    function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) act(e.target.getAttribute("data-spy"));
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  var hero = document.querySelector(".hero");
+  if (hero) {
+    hero.setAttribute("data-spy", "home");
+    so.observe(hero);
+  }
+  [
+    "research",
+    "publications",
+    "projects",
+    "skills",
+    "background",
+    "contact",
+  ].forEach(function (id) {
+    var s = document.getElementById(id);
+    if (s) {
+      s.setAttribute("data-spy", id);
+      so.observe(s);
+    }
+  });
+  if (rm) return;
+  var co = new IntersectionObserver(
+    function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        co.unobserve(e.target);
+        var el = e.target,
+          m = el.textContent.match(/^(\d+)(\+?)$/);
+        if (!m) return;
+        var n = +m[1],
+          t0 = null;
+        function st(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 1200, 1);
+          el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))) + m[2];
+          if (p < 1) requestAnimationFrame(st);
+        }
+        requestAnimationFrame(st);
+      });
+    },
+    { threshold: 0.6 }
+  );
+  document.querySelectorAll(".stat b").forEach(function (b) {
+    if (/^\d+\+?$/.test(b.textContent)) co.observe(b);
   });
 })();

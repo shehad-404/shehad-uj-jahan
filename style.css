@@ -872,3 +872,91 @@ a.link:hover {
   background: var(--card);
   color: var(--text);
 }
+
+/* ===== Extra animation ===== */
+.wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 180px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.wave path {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.wave .w1 {
+  stroke: #6fbac7;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 3.2s ease forwards 0.5s;
+}
+.wave .w2 {
+  stroke: #f0b429;
+  stroke-dasharray: 10 12;
+  opacity: 0;
+  animation: fadein 1s ease forwards 3.6s;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fadein {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+.hero .eyebrow {
+  animation: up 0.7s ease both 0.1s;
+}
+.hero h1 {
+  animation: up 0.8s ease both 0.25s;
+}
+.hero .typed {
+  animation: up 0.8s ease both 0.4s;
+}
+.hero p {
+  animation: up 0.8s ease both 0.55s;
+}
+.hero .btns {
+  animation: up 0.8s ease both 0.7s;
+}
+.photo {
+  animation: pop 0.9s ease both 0.3s, floaty 6s ease-in-out 1.3s infinite;
+}
+h2.rv::after {
+  width: 0;
+}
+h2.rv.in::after {
+  width: 56px;
+  transition: width 0.8s ease 0.3s;
+}
+nav a.active {
+  color: var(--accent);
+  border-top-color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .wave .w1 {
+    stroke-dashoffset: 0;
+  }
+  .wave .w2 {
+    opacity: 1;
+  }
+}

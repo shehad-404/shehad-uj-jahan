@@ -40,6 +40,22 @@
 
     <main id="home">
       <div class="hero">
+        <svg
+          class="wave"
+          viewBox="0 0 1200 180"
+          preserveAspectRatio="xMidYMax slice"
+          aria-hidden="true"
+        >
+          <path
+            class="w1"
+            pathLength="1"
+            d="M0 110 C100 30 200 30 300 100 S500 175 600 100 S760 35 800 85"
+          />
+          <path
+            class="w2"
+            d="M800 85 C880 135 960 55 1040 95 S1140 135 1200 75"
+          />
+        </svg>
         <div class="wrap">
           <div>
             <div class="eyebrow">Research Assistant · IWFM, BUET</div>
@@ -353,6 +369,37 @@
                 </div>
               </div>
             </article>
+            <article class="proj">
+              <div class="shot">
+                <span class="ph">Automatic Railway Gate Control System</span
+                ><img
+                  src="assets/projects/railway-gate.jpg"
+                  alt="Automatic Railway Gate Control System screenshot"
+                />
+              </div>
+              <div class="pbody">
+                <h3>Automatic Railway Gate Control System</h3>
+                <div class="meta">
+                  Arduino · Ultrasonic sensor · Servo motor
+                </div>
+                <p>
+                  Automatic railway crossing controller that detects an
+                  approaching train with an ultrasonic sensor, closes the gate
+                  with a servo motor to keep vehicles and pedestrians off the
+                  tracks, and holds it closed for a set time after the train
+                  leaves.
+                </p>
+                <div class="plinks">
+                  <a
+                    class="pbtn"
+                    href="https://github.com/shehad-404/railway-gate-control-arduino"
+                    target="_blank"
+                    rel="noopener"
+                    >GitHub ↗</a
+                  ><!-- <a class="pbtn" href="LIVE_LINK" target="_blank" rel="noopener">Live demo ↗</a> -->
+                </div>
+              </div>
+            </article>
           </div>
           <h3 style="margin: 38px 0 14px; color: var(--head)">
             Full-stack &amp; front-end
@@ -454,13 +501,7 @@
                     target="_blank"
                     rel="noopener"
                     >GitHub ↗</a
-                  ><a
-                    class="pbtn"
-                    href="https://shehad-404.github.io/Online-Calculator/"
-                    target="_blank"
-                    rel="noopener"
-                    >Live demo ↗</a
-                  >
+                  ><!-- <a class="pbtn" href="LIVE_LINK" target="_blank" rel="noopener">Live demo ↗</a> -->
                 </div>
               </div>
             </article>
@@ -570,8 +611,6 @@
         <div class="wrap">
           <h2>Skills</h2>
           <dl class="skills" style="margin: 0">
-            <dt>Languages</dt>
-            <dd>Python, JavaScript, C/C++</dd>
             <dt>Machine Learning &amp; AI</dt>
             <dd>PyTorch, TensorFlow, Scikit-learn</dd>
             <dt>Deep Learning</dt>
@@ -594,6 +633,8 @@
             <dd>Node.js, Express, REST APIs</dd>
             <dt>Databases &amp; Platforms</dt>
             <dd>MySQL, MongoDB, Firebase, WordPress</dd>
+            <dt>Languages</dt>
+            <dd>Python, JavaScript, C/C++</dd>
           </dl>
         </div>
       </section>
@@ -610,15 +651,15 @@
             </div>
             <div class="item">
               <h3>Higher Secondary Certificate</h3>
-              <div class="meta">Carmichael College, · 2017 – 2019</div>
-              Rangpur, Bangladesh
+              <div class="meta">Carmichael College, Rangpur · 2017 – 2019</div>
+              GPA 4.88 / 5.00
             </div>
             <div class="item">
               <h3>Secondary School Certificate</h3>
               <div class="meta">
-                Deuty High School &amp; College, · 2012 – 2016
+                Deuty High School &amp; College, Rangpur · 2012 – 2016
               </div>
-              Rangpur, Bangladesh
+              GPA 5.00 / 5.00
             </div>
           </div>
           <h3 style="margin: 36px 0 12px; color: var(--head)">
@@ -682,7 +723,7 @@
               <input id="ms" placeholder="Subject" />
               <textarea
                 id="mm"
-                rows="7"
+                rows="5"
                 placeholder="Your message"
                 required
               ></textarea>
