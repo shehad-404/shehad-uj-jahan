@@ -334,3 +334,42 @@ function tzl() {
     if (/^\d+\+?$/.test(b.textContent)) co.observe(b);
   });
 })();
+
+(function () {
+  var ph = document.querySelector(".photo"),
+    hero = document.querySelector(".hero");
+  if (
+    !ph ||
+    !hero ||
+    (window.matchMedia &&
+      matchMedia("(prefers-reduced-motion: reduce)").matches)
+  )
+    return;
+  var tx = 0,
+    ty = 0,
+    M = 16;
+  function set(x, y) {
+    tx = x;
+    ty = y;
+    ph.style.setProperty("--px", x + "px");
+    ph.style.setProperty("--py", y + "px");
+  }
+  hero.addEventListener("pointermove", function (e) {
+    if (e.pointerType && e.pointerType !== "mouse") return;
+    var r = ph.getBoundingClientRect(),
+      cx = r.left + r.width / 2 - tx,
+      cy = r.top + r.height / 2 - ty,
+      dx = (e.clientX - cx) / (r.width / 2),
+      dy = (e.clientY - cy) / (r.height / 2);
+    if (Math.abs(dx) > 1.12 || Math.abs(dy) > 1.12) {
+      if (tx || ty) set(0, 0);
+      return;
+    }
+    dx = Math.max(-1, Math.min(1, dx));
+    dy = Math.max(-1, Math.min(1, dy));
+    set(-dx * M, -dy * M);
+  });
+  hero.addEventListener("pointerleave", function () {
+    set(0, 0);
+  });
+})();

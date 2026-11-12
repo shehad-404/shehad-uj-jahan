@@ -960,3 +960,9 @@ nav a.active {
     opacity: 1;
   }
 }
+
+/* ===== Photo follows the cursor (moves opposite to it) ===== */
+.photo {
+  translate: var(--px, 0px) var(--py, 0px);
+  transition: translate 0.25s ease-out, box-shadow 0.4s, border-color 0.4s;
+}
