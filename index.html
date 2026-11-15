@@ -757,17 +757,31 @@
               <input id="tn" placeholder="Your name" required />
               <input id="te" type="email" placeholder="Your email" required />
               <div class="row">
-                <input
-                  id="td"
-                  type="date"
-                  required
-                  aria-label="Preferred date"
-                /><input
-                  id="tt"
-                  type="time"
-                  required
-                  aria-label="Preferred time"
-                />
+                <div class="pick">
+                  <input
+                    id="td"
+                    type="date"
+                    required
+                    aria-label="Preferred date"
+                  /><span class="pk">Select date</span
+                  ><svg class="pi" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M7 2v3M17 2v3M3 9h18M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+                    />
+                  </svg>
+                </div>
+                <div class="pick">
+                  <input
+                    id="tt"
+                    type="time"
+                    required
+                    aria-label="Preferred time"
+                  /><span class="pk">Select time</span
+                  ><svg class="pi" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                </div>
               </div>
               <select id="tz" required aria-label="Your time zone">
                 <option value="">Select your country / time zone</option>
