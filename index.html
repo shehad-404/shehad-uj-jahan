@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=3" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>"
@@ -757,27 +757,87 @@
               <input id="tn" placeholder="Your name" required />
               <input id="te" type="email" placeholder="Your email" required />
               <div class="row">
-                <div class="pick">
+                <div class="pick" style="position: relative">
                   <input
                     id="td"
                     type="date"
                     required
                     aria-label="Preferred date"
-                  /><span class="pk">Select date</span
-                  ><svg class="pi" viewBox="0 0 24 24" aria-hidden="true">
+                  /><span
+                    class="pk"
+                    style="
+                      position: absolute;
+                      left: 12px;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      pointer-events: none;
+                      color: #9fbcc2;
+                      font-size: 15px;
+                    "
+                    >Select date</span
+                  ><svg
+                    class="pi"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    style="
+                      position: absolute;
+                      right: 12px;
+                      top: 50%;
+                      margin-top: -10px;
+                      pointer-events: none;
+                      color: #e3eef0;
+                    "
+                  >
                     <path
                       d="M7 2v3M17 2v3M3 9h18M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
                     />
                   </svg>
                 </div>
-                <div class="pick">
+                <div class="pick" style="position: relative">
                   <input
                     id="tt"
                     type="time"
                     required
                     aria-label="Preferred time"
-                  /><span class="pk">Select time</span
-                  ><svg class="pi" viewBox="0 0 24 24" aria-hidden="true">
+                  /><span
+                    class="pk"
+                    style="
+                      position: absolute;
+                      left: 12px;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      pointer-events: none;
+                      color: #9fbcc2;
+                      font-size: 15px;
+                    "
+                    >Select time</span
+                  ><svg
+                    class="pi"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    style="
+                      position: absolute;
+                      right: 12px;
+                      top: 50%;
+                      margin-top: -10px;
+                      pointer-events: none;
+                      color: #e3eef0;
+                    "
+                  >
                     <circle cx="12" cy="12" r="9" />
                     <path d="M12 7v5l3 2" />
                   </svg>
@@ -870,6 +930,6 @@
       ><button id="dn" aria-label="Go to bottom" title="Go to bottom">↓</button>
     </div>
 
-    <script src="script.js" defer></script>
+    <script src="script.js?v=3" defer></script>
   </body>
 </html>
