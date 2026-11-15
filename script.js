@@ -226,6 +226,7 @@ document.querySelectorAll(".shot img").forEach(function (i) {
       });
   }
 })();
+
 function tzl() {
   var s = document.getElementById("tz");
   return s.options[s.selectedIndex].text;
@@ -371,5 +372,56 @@ function tzl() {
   });
   hero.addEventListener("pointerleave", function () {
     set(0, 0);
+  });
+})();
+
+(function () {
+  var m = document.getElementById("menu"),
+    n = document.querySelector("header nav");
+  if (!m || !n) return;
+  function close() {
+    n.classList.remove("open");
+    m.setAttribute("aria-expanded", "false");
+    m.textContent = "\u2630";
+  }
+  m.onclick = function () {
+    var o = n.classList.toggle("open");
+    m.setAttribute("aria-expanded", o ? "true" : "false");
+    m.textContent = o ? "\u2715" : "\u2630";
+  };
+  n.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") close();
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 860) close();
+  });
+})();
+
+(function () {
+  var b = document.getElementById("menu"),
+    n = document.getElementById("nav");
+  if (!b || !n) return;
+  function close() {
+    n.classList.remove("open");
+    b.setAttribute("aria-expanded", "false");
+    b.setAttribute("aria-label", "Open menu");
+  }
+  b.onclick = function (e) {
+    e.stopPropagation();
+    var o = n.classList.toggle("open");
+    b.setAttribute("aria-expanded", o ? "true" : "false");
+    b.setAttribute("aria-label", o ? "Close menu" : "Open menu");
+  };
+  n.addEventListener("click", function (e) {
+    if (e.target.closest("a")) close();
+  });
+  document.addEventListener("click", function (e) {
+    if (!n.contains(e.target)) close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 900) close();
   });
 })();
