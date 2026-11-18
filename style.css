@@ -1147,3 +1147,61 @@ footer a {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Transparent scroll buttons ===== */
+.fab button {
+  background: rgba(6, 24, 30, 0.12);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  color: var(--accent);
+  border-color: rgba(240, 180, 41, 0.65);
+  box-shadow: none;
+  opacity: 0.7;
+}
+.fab button:hover,
+.fab button:focus-visible {
+  background: var(--accent);
+  color: #1a1200;
+  opacity: 1;
+}
+
+/* ===== Fix: form boxes overflowing on narrow screens ===== */
+.forms {
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+.forms form {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+.forms form > * {
+  min-width: 0;
+}
+.forms .row {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+@media (max-width: 480px) {
+  .forms .row:has(select) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .forms form {
+    padding: 18px;
+  }
+}
+.pick {
+  min-width: 0;
+}
+.forms input,
+.forms select,
+.forms textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+.forms input[type="date"],
+.forms input[type="time"] {
+  width: 100%;
+  overflow: hidden;
+}
+.forms select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
